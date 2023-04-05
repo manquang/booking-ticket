@@ -153,9 +153,9 @@ function Dashboard() {
               </div>
             </div>
             <div className="p-3 border-none shadow-xl rounded-xl">
-              <h1>DOANH THU TRONG THÁNG 3</h1>
+              <h1>DOANH THU TRONG THÁNG {currentMonth}</h1>
               <p className="text-[35px] py-4 font-bold">
-                {(total * 1000).toLocaleString("vi", {
+                {(total ? total : 0 * 1000).toLocaleString("vi", {
                   style: "currency",
                   currency: "VND",
                 })}
@@ -171,7 +171,7 @@ function Dashboard() {
           <div className="grid grid-cols-10 mt-10 gap-3">
             <div className="p-3 flex flex-col items-center col-span-3 text-center rounded-xl shadow-xl">
               <h1 className="font-medium text-[18px]">
-                TỔNG DOANH THU NĂM 2023
+                TỔNG DOANH THU NĂM {year}
               </h1>
               <p className="text-sm">&#40; Đơn vị tính: Nghìn đồng &#41;</p>
               <div className="p-5" style={{ width: 200, height: 200 }}>
@@ -202,9 +202,9 @@ function Dashboard() {
               <p className="text-sm">
                 Tổng danh thu từ việc bán vé so với mục tiêu đặt ra
               </p>
-              <button className="py-2 mt-2 px-4 bg-black text-sm text-white font-medium">
+              {/* <button className="py-2 mt-2 px-4 bg-black text-sm text-white font-medium">
                 Lập Báo Cáo
-              </button>
+              </button> */}
             </div>
             <div className="p-3 col-span-7 shadow-2xl rounded-lg">
               <ResponsiveContainer width="100%" height="100%">

@@ -54,7 +54,7 @@ function SideBars() {
         </div>
       </div>
       <div className="mt-2">
-        <h2 className="font-medium text-sm text-gray-600">BlOG & SỰ KIỆN</h2>
+        <h2 className="font-medium text-sm text-gray-600">BLOG & SỰ KIỆN</h2>
         <div className="flex flex-col items-start">
           <button className="py-1 pl-8 hover:bg-gray-800 hover:text-white hover:w-full">
             <i className="fas fa-blog"></i>&emsp;Blog điện ảnh
