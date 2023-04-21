@@ -107,7 +107,12 @@ function Dashboard() {
         <div className="m-5">
           <div class="form-group">
             <label for="yearSelect">Chọn năm:</label>
-            <select class="form-control" id="yearSelect" value={year} onChange={e=>setYear(e.target.value)}>
+            <select
+              class="form-control"
+              id="yearSelect"
+              value={year}
+              onChange={(e) => setYear(e.target.value)}
+            >
               {summaryUser.map((item) => (
                 <option key={item.year} value={item.year}>
                   {item.year}
@@ -155,7 +160,7 @@ function Dashboard() {
             <div className="p-3 border-none shadow-xl rounded-xl">
               <h1>DOANH THU TRONG THÁNG {currentMonth}</h1>
               <p className="text-[35px] py-4 font-bold">
-                {(total ? total : 0 * 1000).toLocaleString("vi", {
+                {((total ? total : 0) * 1000).toLocaleString("vi", {
                   style: "currency",
                   currency: "VND",
                 })}

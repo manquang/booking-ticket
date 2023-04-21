@@ -10,7 +10,7 @@ import {
   MenuItem,
   Button,
 } from "@material-tailwind/react";
-import Data from "./TranslationEnglish/Data.json"
+import Data from "./TranslationEnglish/Data.json";
 
 import Logo from "../login/mylogo.png";
 import { authLogout } from "../../../redux/actions/authActions";
@@ -19,9 +19,9 @@ function HeaderPublic() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
-  const [isActive, setIsActive] = useState(true)
-  const [content, setContent] = useState("")
-  const language = useSelector(state => state.language.language)
+  const [isActive, setIsActive] = useState(true);
+  const [content, setContent] = useState("");
+  const language = useSelector((state) => state.language.language);
   const userName = localStorage.getItem("user");
   const handleLogout = () => {
     dispatch(authLogout());
@@ -34,10 +34,10 @@ function HeaderPublic() {
     if (isAuthenticated === false) {
       navigate("/");
     }
-    if(language === "English"){
-      setContent(Data.english)
-    }else{
-      setContent("")
+    if (language === "English") {
+      setContent(Data.english);
+    } else {
+      setContent("");
     }
   }, [dispatch, isAuthenticated, language, navigate, user]);
   return (
@@ -47,10 +47,12 @@ function HeaderPublic() {
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center">
               <div className="flex-shrink-0">
-                <Link
-                  to="/home"
-                >
-                  <img className="lg:h-8 lg:w-[150px] h-5 w-[100px]" src={Logo} alt="Workflow" />
+                <Link to="/home">
+                  <img
+                    className="lg:h-8 lg:w-[150px] h-5 w-[100px]"
+                    src={Logo}
+                    alt="Workflow"
+                  />
                 </Link>
               </div>
               <div className="hidden lg:block">
@@ -59,75 +61,64 @@ function HeaderPublic() {
                     to="/booking"
                     className="text-white hover:bg-[#E50914] hover:text-white px-3 py-2 rounded-md text-sm font-medium uppercase"
                   >
-                    { 
-                      content === "" ? 'Mua vé' : content.navbar.nav1
-                    }
+                    Mua vé
                   </Link>
                   <Link
                     to="/movie"
                     className="text-white hover:bg-[#E50914] hover:text-white px-3 py-2 rounded-md text-sm font-medium uppercase"
                   >
-                    { 
-                      content === "" ? 'phim' : content.navbar.nav2
-                    }
+                    Phim
                   </Link>
                   <Link
                     to="/cinema"
                     className="text-white hover:bg-[#E50914] hover:text-white px-3 py-2 rounded-md text-sm font-medium uppercase"
                   >
-                    { 
-                      content === "" ? 'rạp chiếu' : content.navbar.nav3
-                    }
+                    {content === "" ? "rạp chiếu" : content.navbar.nav3}
                   </Link>
                   <Link
                     to="/blog&event"
                     className="text-white hover:bg-[#E50914] hover:text-white px-3 py-2 rounded-md text-sm font-medium uppercase"
                   >
-                    { 
-                      content === "" ? 'góc điện ảnh và sự kiện' : content.navbar.nav4
-                    }
+                    {content === ""
+                      ? "góc điện ảnh và sự kiện"
+                      : content.navbar.nav4}
                   </Link>
                   <Link
                     to="/support"
                     className="text-white hover:bg-[#E50914] hover:text-white px-3 py-2 rounded-md text-sm font-medium uppercase"
                   >
-                    { 
-                      content === "" ? 'hỗ trợ' : content.navbar.nav5
-                    }
+                    {content === "" ? "hỗ trợ" : content.navbar.nav5}
                   </Link>
                   <Link
                     to="/search"
                     className="text-white hover:bg-[#E50914] hover:text-white px-3 py-2 rounded-md text-sm font-medium uppercase"
                   >
-                    { 
-                      content === "" ? 'tìm kiếm' : content.navbar.nav6
-                    }
+                    {content === "" ? "tìm kiếm" : content.navbar.nav6}
                   </Link>
                 </div>
               </div>
             </div>
             <div className="flex justify-between">
-              <button 
-                style={{color: isActive === true ? "red" : ""}}
+              <button
+                style={{ color: isActive === true ? "red" : "" }}
                 onClick={() => {
-                  dispatch(changeLanguage("Vietnamese"))
-                  setIsActive(!isActive)
-                }
-              }
-              className="text-white text-[11px] md:text-[12px]">
+                  dispatch(changeLanguage("Vietnamese"));
+                  setIsActive(!isActive);
+                }}
+                className="text-white text-[11px] md:text-[12px]"
+              >
                 <i className="fas fa-globe"></i>
                 &ensp;VN &ensp;
               </button>
-              <button 
-               
+              <button
                 onClick={() => {
-                  dispatch(changeLanguage("English"))
-                  setIsActive(!isActive)
-                }
-              }  
-              className="text-white text-[11px] md:text-[12px]">
-                | &ensp; 
-                <span style={{color: isActive === false ? "red" : ""}}>
+                  dispatch(changeLanguage("English"));
+                  setIsActive(!isActive);
+                }}
+                className="text-white text-[11px] md:text-[12px]"
+              >
+                | &ensp;
+                <span style={{ color: isActive === false ? "red" : "" }}>
                   EN
                 </span>
               </button>
@@ -144,9 +135,6 @@ function HeaderPublic() {
                   </MenuItem>
                   <MenuItem>
                     <Link to="/user-tickets">Vé đã đặt</Link>
-                  </MenuItem>
-                  <MenuItem>
-                    <Link to="/account">Đổi mật khẩu</Link>
                   </MenuItem>
                   <MenuItem
                     className="border-t border-bg-gray-700"
@@ -204,63 +192,63 @@ function HeaderPublic() {
           </div>
         </div>
         <div className="z-50">
-        <Transition
-          show={isOpen}
-          className="bg-black"
-          enter="transition ease-out duration-100 transform"
-          enterFrom="opacity-0 scale-95"
-          enterTo="opacity-100 scale-100"
-          leave="transition ease-in duration-75 transform"
-          leaveFrom="opacity-100 scale-100"
-          leaveTo="opacity-0 scale-95"
-        >
-          {(ref) => (
-            <div className="lg:hidden" id="mobile-menu">
-              <div ref={ref} className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <Link
-                  to="/booking"
-                  className="hover:bg-gray-700 text-white block px-3 py-[2px] rounded-md text-sm font-medium"
-                >
-                  MUA VÉ
-                </Link>
+          <Transition
+            show={isOpen}
+            className="bg-black"
+            enter="transition ease-out duration-100 transform"
+            enterFrom="opacity-0 scale-95"
+            enterTo="opacity-100 scale-100"
+            leave="transition ease-in duration-75 transform"
+            leaveFrom="opacity-100 scale-100"
+            leaveTo="opacity-0 scale-95"
+          >
+            {(ref) => (
+              <div className="lg:hidden" id="mobile-menu">
+                <div ref={ref} className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                  <Link
+                    to="/booking"
+                    className="hover:bg-gray-700 text-white block px-3 py-[2px] rounded-md text-sm font-medium"
+                  >
+                    MUA VÉ
+                  </Link>
 
-                <Link
-                   to="/movie"
-                  className="text-white hover:bg-gray-700 hover:text-white block px-3 py-[2px] rounded-md text-sm font-medium"
-                >
-                  PHIM
-                </Link>
+                  <Link
+                    to="/movie"
+                    className="text-white hover:bg-gray-700 hover:text-white block px-3 py-[2px] rounded-md text-sm font-medium"
+                  >
+                    PHIM
+                  </Link>
 
-                <Link
-                to="/cinema"
-                  className="text-white hover:bg-gray-700 hover:text-white block px-3 py-[2px] rounded-md text-sm font-medium"
-                >
-                  RẠP CHIẾU
-                </Link>
+                  <Link
+                    to="/cinema"
+                    className="text-white hover:bg-gray-700 hover:text-white block px-3 py-[2px] rounded-md text-sm font-medium"
+                  >
+                    RẠP CHIẾU
+                  </Link>
 
-                <Link
-                  to="/blog&event"
-                  className="text-white hover:bg-gray-700 hover:text-white block px-3 py-[2px] rounded-md text-sm font-medium"
-                >
-                  GÓC ĐIỆN ẢNH & SỰ KIỆN
-                </Link>
+                  <Link
+                    to="/blog&event"
+                    className="text-white hover:bg-gray-700 hover:text-white block px-3 py-[2px] rounded-md text-sm font-medium"
+                  >
+                    GÓC ĐIỆN ẢNH & SỰ KIỆN
+                  </Link>
 
-                <Link
-                  to="/support"
-                  className="text-white hover:bg-gray-700 hover:text-white block px-3 py-[2px] rounded-md text-sm font-medium"
-                >
-                  HỖ TRỢ
-                </Link>
-                <Link
-                  to="/search"
-                  className="text-white hover:bg-gray-700 hover:text-white block px-3 py-[2px] rounded-md text-sm font-medium"
-                >
-                  TÌM KIẾM
-                </Link>
+                  <Link
+                    to="/support"
+                    className="text-white hover:bg-gray-700 hover:text-white block px-3 py-[2px] rounded-md text-sm font-medium"
+                  >
+                    HỖ TRỢ
+                  </Link>
+                  <Link
+                    to="/search"
+                    className="text-white hover:bg-gray-700 hover:text-white block px-3 py-[2px] rounded-md text-sm font-medium"
+                  >
+                    TÌM KIẾM
+                  </Link>
+                </div>
               </div>
-            </div>
-          )}
-        </Transition>
+            )}
+          </Transition>
         </div>
       </nav>
     </div>

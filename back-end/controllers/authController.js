@@ -16,8 +16,10 @@ exports.register = async (req, res, next) => {
       const user = await User.create(req.body);
       const token = jwt.sign({ userId: user._id }, process.env.APP_SECRET);
       res.status(200).json({
-        user,
         token,
+        userName: user.name,
+        userId: user._id,
+        userPosition: user.position,
       });
     }
   } catch (error) {
@@ -79,27 +81,30 @@ exports.getAllUserByTime = async (req, res) => {
     const result = await User.aggregate([
       {
         $group: {
-          _id: { year: { $year: '$createdAt' }, month: { $month: '$createdAt' } },
+          _id: {
+            year: { $year: "$createdAt" },
+            month: { $month: "$createdAt" },
+          },
           count: { $sum: 1 },
-          users: { $push: '$$ROOT' }
-        }
+          users: { $push: "$$ROOT" },
+        },
       },
-      { $sort: { '_id.year': 1, '_id.month': 1 } },
+      { $sort: { "_id.year": 1, "_id.month": 1 } },
       {
         $group: {
-          _id: '$_id.year',
-          count: { $sum: '$count' },
+          _id: "$_id.year",
+          count: { $sum: "$count" },
           months: {
             $push: {
-              month: '$_id.month',
-              count: '$count',
+              month: "$_id.month",
+              count: "$count",
               // users: '$users'
-            }
-          }
-        }
+            },
+          },
+        },
       },
       { $sort: { _id: 1 } },
-      { $project: { _id: 0, year: '$_id', count: 1, months: 1 } }
+      { $project: { _id: 0, year: "$_id", count: 1, months: 1 } },
     ]);
     res.json(result);
   } catch (error) {
@@ -126,7 +131,6 @@ exports.updateUser = async (req, res, next) => {
     res.json(error);
   }
 };
-
 exports.changePasswordUser = async (req, res, next) => {
   try {
     const { userId } = req.params;
@@ -171,7 +175,7 @@ exports.forgotPassword = async (req, res, next) => {
     await transporter.sendMail({
       from: "reactflix.cinema@gmail.com",
       to: email,
-      subject: "React Flix Account",
+      subject: "Cinema Account",
       text: `
       Chào bạn! bạn có phải là người muốn reset password này không?\
       Hãy sử dụng mã code này để cập nhật lại mật khẩu cho tài khoản ${email}\n

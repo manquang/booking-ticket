@@ -36,11 +36,13 @@ function LoginForm({ handleOpen }) {
     }
     if (isAuthenticated === true) {
       if (user.userPosition !== "") {
+        console.log(user);
         navigate("/admin/dashboard");
         localStorage.setItem("admin", user.userName);
         localStorage.setItem("token-admin", user.token);
         localStorage.setItem("adminId", user.userId);
       } else {
+        console.log(user);
         navigate("/home");
         localStorage.setItem("user", user.userName);
         localStorage.setItem("token-user", user.token);

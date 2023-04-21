@@ -116,7 +116,7 @@ function BlogAndEvent() {
             </div>
             <div className="lg:px-16 p-5 text-white max-h-full w-full">
               <button className="text-white py-[17px]  text-[15px] border-b-[3px] mb-10 border-[#E50914]">
-                REACT FLIX
+                React Flix
               </button>
               <p className="text-gray-400 text-sm lg:text-[15px] text-justify">
                 &ensp;React Flix là một trong những công ty một mình tao đầu
@@ -125,7 +125,7 @@ function BlogAndEvent() {
                 thích nhất. Ngoài hệ thống rạp chiếu phim hiện đại, thu hút hàng
                 triệu lượt người đến xem, React Flix còn hấp dẫn khán giả bởi
                 không khí thân thiện cũng như chất lượng dịch vụ hàng đầu. Đến
-                website react flix, khách hàng sẽ dễ dàng tham khảo các phim hay
+                website React Flix, khách hàng sẽ dễ dàng tham khảo các phim hay
                 nhất, phim mới nhất đang chiếu hoặc sắp chiếu luôn được cập nhật
                 thường xuyên. Lịch chiếu tại tất cả hệ thống rạp chiếu phim của
                 React Flix cũng được cập nhật đầy đủ hàng ngày hàng giờ trên
@@ -163,7 +163,6 @@ function BlogAndEvent() {
           </div>
         )}
       </div>
-      
     </>
   );
 }

@@ -55,7 +55,7 @@ function NavBars() {
               <div className="relative p-3">
                 <i className="fas fa-calendar-day"></i>
                 <span className="absolute top-0 text-[13px] right-0 px-[6px] rounded-full text-white bg-red-700">
-                  {evt.length}
+                  {evt ? evt.length : 0}
                 </span>
               </div>
             </Link>

@@ -219,10 +219,10 @@ function HomePage() {
                   {content === "" ? "review phim" : content.title.blogfilm}
                 </button>
                 <div className="grid lg:grid-cols-2 grid-cols-1 py-10 gap-4">
-                  {blogs.map((blog, index) => (
-                    index < 6 &&
-                    <Blogs key={blog._id} blog={blog} />
-                  ))}
+                  {blogs.map(
+                    (blog, index) =>
+                      index < 6 && <Blogs key={blog._id} blog={blog} />
+                  )}
                 </div>
                 <div>
                   <div className="flex justify-center mt-5">
@@ -279,7 +279,7 @@ function HomePage() {
               {/* về chúng tôi */}
               <div className="py-5">
                 <button className="text-white py-[17px]  text-[15px] border-b-[3px] mb-10 border-[#E50914]">
-                  REACT FLIX
+                  React Flix
                 </button>
                 <p className="text-gray-400 text-sm lg:text-[15px] text-justify">
                   &ensp;React Flix là một trong những công ty một mình tao đầu

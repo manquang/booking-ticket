@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Breadcrumbs } from "@material-tailwind/react";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import HeaderPublic from "../components/headerPublic";
@@ -38,7 +38,6 @@ import { isCheckQuanlitySeat } from "../middleware";
 import Data from "../components/TranslationEnglish/Data.json";
 
 function Booking() {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   // CALL STORE FROM GET API
   const baseURL = "http://localhost:5000";
@@ -55,7 +54,12 @@ function Booking() {
   const language = useSelector((state) => state.language.language);
   // COUNT SỐ VÉ KHÁCH HÀNG ĐÃ CHỌN
   let [countTicket, setCountTicket] = useState(0);
-  tickets.map((ticket) => (countTicket = countTicket + ticket.quantity));
+  tickets.map(
+    (ticket) =>
+      (countTicket =
+        countTicket +
+        ticket.quantity * (ticket.typeTicket === "Couple" ? 2 : 1))
+  );
   const [size, setSize] = useState(null);
   const [loadingPage, setLoadingPage] = useState(false);
   const [stateLoadingLogin, setStateLoadingLogin] = useState({
@@ -102,6 +106,11 @@ function Booking() {
       setCountTicket(countTicket - 1);
     }
   };
+  const handleChangeSession = () => {
+    setCountTicket(0);
+    setValueSeats("");
+    setSelectSeats([]);
+  };
   const tokenId = localStorage.getItem("userId");
   const ticketPayment = {
     nameMovie: movie.name,
@@ -120,7 +129,7 @@ function Booking() {
     setTimeout(async () => {
       setStateLoadingLogin({ loading: false });
       await axios
-        .post(`${baseURL}/api/v1/payment/create-checkout-session`, {
+        .post(`${baseURL}/api/v1/payment/create`, {
           ticketPayment,
           userId: tokenId,
         })
@@ -293,6 +302,7 @@ function Booking() {
                           key={showtime._id}
                           showtime={showtime}
                           setValueShowTime={setValueShowTime}
+                          handleChangeSession={handleChangeSession}
                         />
                       )
                   )}

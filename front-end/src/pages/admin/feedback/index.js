@@ -134,7 +134,11 @@ function FeedBack() {
           </DialogHeader>
           <DialogBody divider>
             {feedbacks.map((fb) =>
-              fb._id === id ? <p className="text-sm text-black">{fb.content}</p> : <></>
+              fb._id === id ? (
+                <p className="text-sm text-black">{fb.content}</p>
+              ) : (
+                <></>
+              )
             )}
           </DialogBody>
           <DialogFooter>

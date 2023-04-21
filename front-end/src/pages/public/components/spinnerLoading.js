@@ -9,7 +9,7 @@ function SpinnerLoading() {
           <div className="">
             <div className="w-16 ml-11 mb-3 h-16 border-t-[5px] border-b-[5px] border-[#E50914] rounded-full animate-spin"></div>
             <h1 className="text-transparent bg-clip-text bg-gradient-to-r from-[#fc3a3a] to-[#fccb2d] text-[27px] pr-5 w-full font-bold">
-              REACT FLIX
+              React Flix
             </h1>
           </div>
         </div>

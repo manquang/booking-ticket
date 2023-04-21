@@ -48,6 +48,7 @@ function Cinema() {
       setContent("");
     }
   }, [language]);
+  console.log(vlCinema);
   return (
     <>
       <div className="bg-black min-h-screen max-h-full">
@@ -60,15 +61,10 @@ function Cinema() {
               <div className="lg:m-[40px] 2xl:m-[60px] m-[20px] max-h-full">
                 <Breadcrumbs className="bg-transparen p-0">
                   <Link to="/home" className="text-gray-400">
-                  {content === ""
-                      ? "Trang chủ"
-                      : content.booking.linkHome
-                  }
+                    {content === "" ? "Trang chủ" : content.booking.linkHome}
                   </Link>
                   <Link to="/cinema" className="text-gray-200">
-                  {content === ""
-                      ? "Rạp chiếu phim"
-                      : content.navbar.nav3}
+                    {content === "" ? "Rạp chiếu phim" : content.navbar.nav3}
                   </Link>
                 </Breadcrumbs>
                 <div className="grid lg:grid-cols-2 grid-cols-1 gap-x-10 lg:gap-x-5 ">
@@ -78,16 +74,18 @@ function Cinema() {
                       className="text-white uppercase text-sm lg:text-[16px] pr-6 py-[15px]  border-b-[3px] border-[#E50914]"
                     >
                       {content === ""
-                      ? "hệ thống rạp chiếu"
-                      : content.cinema.title}
+                        ? "hệ thống rạp chiếu"
+                        : content.cinema.title}
                     </button>
                     <div className="mt-10">
                       <div className="mb-2">
                         <Select
                           className="text-white"
-                          label= {content === ""
-                          ? "CHỌN RẠP CHIẾU"
-                          : content.booking.selectCinema}
+                          label={
+                            content === ""
+                              ? "CHỌN RẠP CHIẾU"
+                              : content.booking.selectCinema
+                          }
                           onChange={handleChangeCinema}
                           animate={{
                             mount: { y: 0 },
@@ -98,7 +96,7 @@ function Cinema() {
                             <Option
                               className="text-black border-b border-gray-500 py-5 focus:text-white focus:bg-blue-gray-600"
                               key={cinema._id}
-                              value={cinema._id}
+                              value={cinema}
                             >
                               {cinema.name}
                             </Option>
@@ -142,7 +140,7 @@ function Cinema() {
                                   {showtimes.map(
                                     (showtime) =>
                                       showtime.movieId === movie._id &&
-                                      showtime.cinemaId === vlCinema && (
+                                      showtime.cinemaId === vlCinema._id && (
                                         <div className="">
                                           <p className="">
                                             Ngày {showtime.startDate}{" "}
@@ -168,9 +166,9 @@ function Cinema() {
                       disabled
                       className="text-white uppercase text-sm lg:text-[16px] pr-6 py-[15px] my-3  border-b-[3px] border-[#E50914]"
                     >
-                       {content === ""
-                      ? "Một số hình ảnh"
-                      : content.cinema.image}
+                      {content === ""
+                        ? "Một số hình ảnh"
+                        : content.cinema.image}
                     </button>
                     <div>
                       <Carousel>
@@ -195,9 +193,7 @@ function Cinema() {
                         disabled
                         className="text-white uppercase text-sm lg:text-[16px] pr-6 py-[15px]  border-b-[3px] border-[#E50914]"
                       >
-                         {content === ""
-                      ? "giá vé"
-                      : content.cinema.price}
+                        {content === "" ? "giá vé" : content.cinema.price}
                       </button>
                       <img
                         src="https://cdn.galaxycine.vn/media/2023/1/18/ca-mau-100_1674015086453.jpg"
@@ -210,21 +206,18 @@ function Cinema() {
                       disabled
                       className="text-white uppercase text-sm lg:text-[16px] pr-6 py-[15px] mt-5  border-b-[3px] border-[#E50914]"
                     >
-                       {content === ""
-                      ? "thông tin chi tiết"
-                      : content.cinema.title}
+                      {content === ""
+                        ? "thông tin chi tiết"
+                        : content.cinema.title}
                     </button>
                     <div className="py-5 text-sm">
                       <p className="text-gray-500">
                         Địa chỉ:{" "}
                         <span className="text-white">
-                          Lầu 2, TTTM Sense City, số 9, Trần Hưng Đạo, P.5, tp.
-                          Tương lai
+                          {vlCinema.address
+                            ? vlCinema.address
+                            : "Không có thông tin"}
                         </span>
-                      </p>
-                      <p className="text-gray-500">
-                        Số điện thoại:{" "}
-                        <span className="text-white">099999233</span>
                       </p>
                       <p className="text-gray-300 text-justify">
                         Galaxy Cà Mau tọa lạc tại lầu 2 TTTM Sense City, số 9,

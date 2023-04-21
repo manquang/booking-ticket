@@ -1,7 +1,7 @@
 const FeedBack = require("../models/Feedback.Model");
 require("dotenv").config();
 const nodemailer = require("nodemailer");
-const User = require("../models/User.Model")
+const User = require("../models/User.Model");
 
 exports.getAllFeedBacks = async (req, res, next) => {
   try {

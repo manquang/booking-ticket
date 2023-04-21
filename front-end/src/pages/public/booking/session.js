@@ -1,12 +1,13 @@
 import { Radio } from "@material-tailwind/react";
 import { useCallback, memo } from "react";
 
-function Session({ showtime, setValueShowTime, seats }) {
+function Session({ showtime, handleChangeSession, setValueShowTime, seats }) {
   const handleShowTime = useCallback(
     (e, time, id) => {
+      handleChangeSession();
       setValueShowTime({ id: e.target.value, timeVl: time, startTimeId: id }); // Get showtime
     },
-    [setValueShowTime]
+    [setValueShowTime, handleChangeSession]
   );
 
   return (
@@ -34,16 +35,18 @@ function Session({ showtime, setValueShowTime, seats }) {
                     <p className="py-1 font-medium text-sm lg:text-[15px]">
                       {time.time}
                     </p>
-                    {seats.map(
-                      (seat) =>
-                        seat.startTimeId === time._id ? (
-                          <p className="text-[11px] text-gray-500">
-                            Số ghế còn trống{" "}
-                            {
-                              seat.seats.filter((seat) => seat.status === true).length
-                            }
-                          </p>
-                        ) : (<></>)
+                    {seats.map((seat) =>
+                      seat.startTimeId === time._id ? (
+                        <p className="text-[11px] text-gray-500">
+                          Số ghế còn trống{" "}
+                          {
+                            seat.seats.filter((seat) => seat.status === true)
+                              .length
+                          }
+                        </p>
+                      ) : (
+                        <></>
+                      )
                     )}
                   </div>
                 }
